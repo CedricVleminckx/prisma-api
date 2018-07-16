@@ -1,0 +1,29 @@
+language: php
+php:
+- '7.1'
+sudo: false
+services:
+- mysql
+addons:
+  ssh_known_hosts: 146.185.145.169
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+before_install:
+- openssl aes-256-cbc -K $encrypted_54f5af2fecf1_key -iv $encrypted_54f5af2fecf1_iv
+  -in ci/deploy_rsa.enc -out ci/deploy_rsa -d
+before_script:
+- rm .env.testing
+- tee .env .env.testing < ci/.env.travis > /dev/null
+- mysql -e 'CREATE DATABASE prisma_test;'
+- composer install --dev --prefer-source --no-interaction
+- php artisan key:generate && php artisan cache:clear && php artisan config:clear
+script:
+- vendor/bin/phpunit
+notifications:
+  email:
+    on_failure: always
+branches:
+  only:
+  - master
+  - develop
