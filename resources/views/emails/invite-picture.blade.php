@@ -9,8 +9,6 @@
    }
 </style>
 
-<p>Geef mee kleur aan de herinneringen van {{ $patient }} met de Prisma app voor Android smartphones en tablets.</p>
-
 <h3>Hey (persoon)</h3>
 <p>
    Ik wil van oma al haar mooie herinneringen en verhalen vastleggen, zodat we haar leven mooi kunnen documenteren.
