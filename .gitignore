@@ -6,6 +6,7 @@
 /.idea
 /.vagrant
 /public/img/storyUploads
+.env
 
 Homestead.json
 Homestead.yaml
